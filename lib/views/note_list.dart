@@ -2,6 +2,8 @@ import 'package:crudblocsqlite/cubits/note_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'note_edit.dart';
+
 class NoteListPage extends StatelessWidget {
   const NoteListPage({Key? key}) : super(key: key);
 
@@ -39,7 +41,13 @@ class DocumentosView extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        print("Teste");
+                        context.read<NotesCubit>().excluirNotas();
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(const SnackBar(
+                            content: Text('Notas excluídas com sucesso'),
+                          ));
                       },
                       child: const Text('OK'),
                     ),
@@ -54,7 +62,11 @@ class DocumentosView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          print("Teste");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const NoteEditPage(note: null)),
+          );
         },
       ),
     );

@@ -1,79 +1,79 @@
 import 'package:bloc/bloc.dart';
-import 'package:crudblocsqlite/dao/note_dao.dart';
-import 'package:crudblocsqlite/models/note.dart';
-import 'note_state.dart';
+import 'package:crudblocsqlite/dao/client_dao.dart';
+import 'package:crudblocsqlite/models/client.dart';
+import 'client_state.dart';
 
 
-class NotesCubit extends Cubit<NotesState> {
-  NotesCubit():
-        noteDao = NoteDAO(),
-        super(const NotesInitial());
+class ClientsCubit extends Cubit<ClientsState> {
+  ClientsCubit():
+        clientDao = ClientDAO(),
+        super(const ClientsInitial());
 
   //instancia do banco de dados sqlite
-  final NoteDAO? noteDao;
+  final ClientDAO? clientDao;
 
-  //buscar todas as notas
+  //buscar todas os clientes
   Future<void> buscarNotas() async {
-    emit(const NotesLoading());
+    emit(const ClientsLoading());
     try {
-      final notes = await noteDao?.buscarNotas();
-      emit(NotesLoaded(
-        notes: notes,
+      final clients = await clientDao?.getClients();
+      emit(ClientsLoaded(
+        clients: clients,
       ));
     } on Exception {
-      emit(const NotesFailure());
+      emit(const ClientsFailure());
     }
   }
 
   //excluir nota atraves um id
   Future<void> excluirNota(id) async {
-    emit(const NotesLoading());
+    emit(const ClientsLoading());
 
     // a linha abaixo nesse cubit simula tempo de processamento no servidor
     // serve para testar o circular indicator
     await Future.delayed(const Duration(seconds: 2));
     try {
-      await noteDao?.delete(id);
+      await clientDao?.delete(id);
       buscarNotas();
     } on Exception {
-      emit(const NotesFailure());
+      emit(const ClientsFailure());
     }
   }
 
   //excluir todas as notas
   Future<void> excluirNotas() async {
-    emit(const NotesLoading());
+    emit(const ClientsLoading());
 
     await Future.delayed(const Duration(seconds: 2));
     try {
-      await noteDao?.deleteAll();
-      emit(const NotesLoaded(
-        notes: [],
+      await clientDao?.deleteAll();
+      emit(const ClientsLoaded(
+        clients: [],
       ));
     } on Exception {
-      emit(const NotesFailure());
+      emit(const ClientsFailure());
     }
   }
 
   //salvar nota
-  Future<void> salvarNota(int? id, String titulo, String conteudo) async {
-    Note editNote = Note(id: id, title: titulo, content: conteudo);
-    emit(const NotesLoading());
+  Future<void> salvarNota(int? id, String name, String phone, double price) async {
+    Client editClient = Client(id: id, name: name, phone: phone, price: price);
+    emit(const ClientsLoading());
     await Future.delayed(const Duration(seconds: 2));
     try {
       //se o metodo nao recebeu um id a nota sera incluida, caso contrario
       //a nota existente sera atualizada pelo id
       if (id == null) {
         //editNote = await _databaseProvider.save(editNote);
-        noteDao?.save(editNote);
+        clientDao?.save(editClient);
       } else {
         //editNote = await _databaseProvider.update(editNote);
-        noteDao?.save(editNote);
+        clientDao?.save(editClient);
       }
-      emit(const NotesSuccess());
+      emit(const ClientsSuccess());
       // buscarNotas();
     } on Exception {
-      emit(const NotesFailure());
+      emit(const ClientsFailure());
     }
   }
 }

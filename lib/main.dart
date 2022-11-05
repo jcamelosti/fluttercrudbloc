@@ -1,3 +1,4 @@
+import 'package:crudblocsqlite/cubits/client_cubit.dart';
 import 'package:crudblocsqlite/views/note_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,9 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (context) => {},
-      child: BlocProvider(
-        create: (context) =>
-            NotesCubit(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<NotesCubit>(
+            create: (BuildContext context) => NotesCubit(),
+          ),
+          BlocProvider<ClientsCubit>(
+            create: (BuildContext context) => ClientsCubit(),
+          ),
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

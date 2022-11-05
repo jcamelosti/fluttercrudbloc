@@ -55,19 +55,72 @@ class DashboardPage extends StatelessWidget {
             mainAxisSpacing: 16,
             crossAxisCount: 2,
             childAspectRatio: .90,
-            children: List.generate(8, (_) {
-              return Card(
+            children: [
+              Card(
                 elevation: 2,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: const <Widget>[FlutterLogo(), Text('data')],
+                    children: <Widget>[
+                      /*Image.asset(
+                        'assets/images/clients.png',
+                      ),*/
+                      const Text("Clientes", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                    ],
                   ),
                 ),
-              );
-            }),
+              ),
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      /*Image.asset(
+                        'assets/images/receivables.jpg',
+                      ),*/
+                      const Text("Cobranças", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      /*Image.asset(
+                        'assets/images/horas.png',
+                      ),*/
+                      const Text("Registro de Horas", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      /*Image.asset(
+                        'assets/images/ganhos.png',
+                      ),*/
+                      const Text("Registro de Ganhos", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                    ],
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       );

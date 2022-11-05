@@ -51,7 +51,7 @@ class NotesEditView extends StatelessWidget {
     }
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bloc SQLite Crud - Editar Nota'),
+        title: const Text('Editar Nota'),
       ),
       body: BlocListener<NotesCubit, NotesState>(
         listener: (context, state) {

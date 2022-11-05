@@ -29,11 +29,16 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Faxinei APP',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const DashboardPage(),
+          //home: const DashboardPage(),//como não usa route não usa home:
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const DashboardPage(),
+            '/clients': (context) => const NoteListPage(),
+          },
         ),
       ),
     );

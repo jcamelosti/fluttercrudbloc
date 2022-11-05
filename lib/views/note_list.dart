@@ -28,7 +28,7 @@ class DocumentosView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bloc SQLite Crud - Lista de Notas'),
+        title: const Text('Lista de Notas'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.clear_all),

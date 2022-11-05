@@ -7,7 +7,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: <Widget>[dashBg, content],
+        children: <Widget>[dashBg, _content(context)],
       ),
     );
   }
@@ -25,14 +25,16 @@ class DashboardPage extends StatelessWidget {
         ],
       );
 
-  get content => Container(
-        child: Column(
-          children: <Widget>[
-            header,
-            grid,
-          ],
-        ),
-      );
+  _content(BuildContext context){
+    return Container(
+      child: Column(
+        children: <Widget>[
+          header,
+          _grid(context),
+        ],
+      ),
+    );
+  }
 
   get header => const ListTile(
         contentPadding: EdgeInsets.only(left: 20, right: 20, top: 50),
@@ -47,81 +49,87 @@ class DashboardPage extends StatelessWidget {
         trailing: CircleAvatar(),
       );
 
-  get grid => Expanded(
-        child: Container(
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-          child: GridView.count(
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            crossAxisCount: 2,
-            childAspectRatio: .90,
-            children: [
-              Card(
+  _grid(BuildContext context){
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+        child: GridView.count(
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          crossAxisCount: 2,
+          childAspectRatio: .90,
+          children: [
+            Card(
                 elevation: 2,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      /*Image.asset(
+                child: InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/clients'),
+                  splashColor: Colors.amberAccent,
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const <Widget>[
+                        /*Image.asset(
                         'assets/images/clients.png',
                       ),*/
-                      const Text("Clientes", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-                    ],
+                        Text("Clientes", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                      ],
+                    ),
                   ),
-                ),
-              ),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      /*Image.asset(
+                )
+            ),
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    /*Image.asset(
                         'assets/images/receivables.jpg',
                       ),*/
-                      const Text("Cobranças", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-                    ],
-                  ),
+                    Text("Cobranças", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                  ],
                 ),
               ),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      /*Image.asset(
+            ),
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    /*Image.asset(
                         'assets/images/horas.png',
                       ),*/
-                      const Text("Registro de Horas", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-                    ],
-                  ),
+                    Text("Registro de Horas", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                  ],
                 ),
               ),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      /*Image.asset(
+            ),
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    /*asset(
                         'assets/images/ganhos.png',
                       ),*/
-                      const Text("Registro de Ganhos", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-                    ],
-                  ),
+                    Text("Registro de Ganhos", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),) //não usa const se widget[] usar
+                  ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
-      );
+      ),
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:crudblocsqlite/cubits/client_cubit.dart';
+import 'package:crudblocsqlite/views/dashboard_page.dart';
 import 'package:crudblocsqlite/views/note_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const NoteListPage(),
+          home: const DashboardPage(),
         ),
       ),
     );

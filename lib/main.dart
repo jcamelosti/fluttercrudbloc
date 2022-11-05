@@ -1,4 +1,3 @@
-import 'package:crudblocsqlite/db/database_provider.dart';
 import 'package:crudblocsqlite/views/note_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,10 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => DatabaseProvider.instance,
+      create: (context) => {},
       child: BlocProvider(
         create: (context) =>
-            NotesCubit(databaseProvider: DatabaseProvider.instance),
+            NotesCubit(),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',

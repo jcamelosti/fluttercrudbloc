@@ -1,24 +1,21 @@
 import 'package:bloc/bloc.dart';
 import 'package:crudblocsqlite/dao/note_dao.dart';
-import 'package:crudblocsqlite/db/database_provider.dart';
 import 'package:crudblocsqlite/models/note.dart';
 import 'note_state.dart';
 
 
 class NotesCubit extends Cubit<NotesState> {
-  NotesCubit({required DatabaseProvider databaseProvider})
-      : _databaseProvider = databaseProvider, noteDao = NoteDAO(),
+  NotesCubit():
+        noteDao = NoteDAO(),
         super(const NotesInitial());
 
   //instancia do banco de dados sqlite
-  final DatabaseProvider _databaseProvider;
-  NoteDAO? noteDao;
+  final NoteDAO? noteDao;
 
   //buscar todas as notas
   Future<void> buscarNotas() async {
     emit(const NotesLoading());
     try {
-      //noteDao = NoteDAO();
       final notes = await noteDao?.buscarNotas();
       emit(NotesLoaded(
         notes: notes,

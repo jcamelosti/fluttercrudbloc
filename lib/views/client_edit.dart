@@ -54,7 +54,7 @@ class ClientsEditView extends StatelessWidget {
     } else {
       _nameController.text = client!.name;
       _phoneController.text = client!.phone;
-      _priceController.text = client!.price.toString();
+      _priceController.text = client!.price.toString().replaceAll('.', ',');
       title = 'Editar Cliente';
     }
     return Scaffold(

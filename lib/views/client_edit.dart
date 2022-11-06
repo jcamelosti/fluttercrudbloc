@@ -150,14 +150,14 @@ class ClientsEditView extends StatelessWidget {
                       onChanged: (text) {
                         // a validacao eh realizada em toda alteracao do campo
                         context.read<ClientValidationCubit>().validaForm(
-                            _nameController.text, _phoneController.text, double.parse(_priceController.text));
+                            _nameController.text, _phoneController.text, tratarMoeda(_priceController.text));
                       },
                       onFieldSubmitted: (String value) {
                         if (_formKey.currentState!.validate()) {
                           //fechar teclado
                           FocusScope.of(context).unfocus();
                           context.read<ClientsCubit>().salvarCliente(client?.id,
-                              _nameController.text, _phoneController.text, double.parse(_priceController.text));
+                              _nameController.text, _phoneController.text, tratarMoeda(_priceController.text));
                         }
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -190,14 +190,14 @@ class ClientsEditView extends StatelessWidget {
                       onChanged: (text) {
                         // a validacao eh realizada em toda alteracao do campo
                         context.read<ClientValidationCubit>().validaForm(
-                            _nameController.text, _phoneController.text, tratarMoeda(text));
+                            _nameController.text, _phoneController.text, tratarMoeda(_priceController.text));
                       },
                       onFieldSubmitted: (String value) {
                         if (_formKey.currentState!.validate()) {
                           //fechar teclado
                           FocusScope.of(context).unfocus();
                           context.read<ClientsCubit>().salvarCliente(client?.id,
-                              _nameController.text, _phoneController.text, double.parse(_priceController.text));
+                              _nameController.text, _phoneController.text, tratarMoeda(_priceController.text));
                         }
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,

@@ -80,53 +80,65 @@ class DashboardPage extends StatelessWidget {
                 )
             ),
             Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    /*Image.asset(
-                        'assets/images/receivables.jpg',
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                child: InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/cobrancas'),
+                  splashColor: Colors.amberAccent,
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const <Widget>[
+                        /*Image.asset(
+                        'assets/images/clients.png',
                       ),*/
-                    Text("Cobranças", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-                  ],
-                ),
-              ),
+                        Text("Cobranças", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                      ],
+                    ),
+                  ),
+                )
             ),
             Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    /*Image.asset(
-                        'assets/images/horas.png',
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                child: InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/horas'),
+                  splashColor: Colors.amberAccent,
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const <Widget>[
+                        /*Image.asset(
+                        'assets/images/clients.png',
                       ),*/
-                    Text("Registro de Horas", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
-                  ],
-                ),
-              ),
+                        Text("Registro de Horas", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                      ],
+                    ),
+                  ),
+                )
             ),
             Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    /*asset(
-                        'assets/images/ganhos.png',
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                child: InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/ganhos'),
+                  splashColor: Colors.amberAccent,
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const <Widget>[
+                        /*Image.asset(
+                        'assets/images/clients.png',
                       ),*/
-                    Text("Registro de Ganhos", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),) //não usa const se widget[] usar
-                  ],
-                ),
-              ),
-            )
+                        Text("Registro de Ganhos", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                      ],
+                    ),
+                  ),
+                )
+            ),
           ],
         ),
       ),

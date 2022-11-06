@@ -38,6 +38,10 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (context) => const DashboardPage(),
             '/clients': (context) => const NoteListPage(),
+            '/cobrancas': (context) => const NoteListPage(),
+            '/horas': (context) => const NoteListPage(),
+            '/ganhos': (context) => const NoteListPage(),
+            '/notes': (context) => const NoteListPage(),
           },
         ),
       ),

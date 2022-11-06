@@ -32,12 +32,19 @@ class ClientValidationCubit extends Cubit<ClientValidationState> {
     }
 
     //price
-    if (phone == '') {
+    /*if (price == '') {
       formInvalid = true;
       cubitPriceMessage = 'Preencha o Valor da Hora';
     } else {
       cubitPriceMessage = '';
     }
+
+    if (phone == '') {
+      formInvalid = true;
+      cubitPriceMessage = 'Preencha o Valor da Hora';
+    } else {
+      cubitPriceMessage = '';
+    }*/
 
     if (formInvalid == true) {
       emit(ClientValidating(

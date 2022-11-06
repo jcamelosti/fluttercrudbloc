@@ -1,4 +1,5 @@
 import 'package:crudblocsqlite/cubits/client_cubit.dart';
+import 'package:crudblocsqlite/views/client_list.dart';
 import 'package:crudblocsqlite/views/dashboard_page.dart';
 import 'package:crudblocsqlite/views/note_list.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
           initialRoute: '/',
           routes: {
             '/': (context) => const DashboardPage(),
-            '/clients': (context) => const NoteListPage(),
+            '/clients': (context) => const ClientListPage(),
             '/cobrancas': (context) => const NoteListPage(),
             '/horas': (context) => const NoteListPage(),
             '/ganhos': (context) => const NoteListPage(),

@@ -13,7 +13,7 @@ class ClientsCubit extends Cubit<ClientsState> {
   final ClientDAO? clientDao;
 
   //buscar todas os clientes
-  Future<void> buscarNotas() async {
+  Future<void> buscarClientes() async {
     emit(const ClientsLoading());
     try {
       final clients = await clientDao?.getClients();
@@ -26,7 +26,7 @@ class ClientsCubit extends Cubit<ClientsState> {
   }
 
   //excluir nota atraves um id
-  Future<void> excluirNota(id) async {
+  Future<void> excluirCliente(id) async {
     emit(const ClientsLoading());
 
     // a linha abaixo nesse cubit simula tempo de processamento no servidor
@@ -34,14 +34,14 @@ class ClientsCubit extends Cubit<ClientsState> {
     await Future.delayed(const Duration(seconds: 2));
     try {
       await clientDao?.delete(id);
-      buscarNotas();
+      buscarClientes();
     } on Exception {
       emit(const ClientsFailure());
     }
   }
 
   //excluir todas as notas
-  Future<void> excluirNotas() async {
+  Future<void> excluirClientes() async {
     emit(const ClientsLoading());
 
     await Future.delayed(const Duration(seconds: 2));
@@ -56,7 +56,7 @@ class ClientsCubit extends Cubit<ClientsState> {
   }
 
   //salvar nota
-  Future<void> salvarNota(int? id, String name, String phone, double price) async {
+  Future<void> salvarCliente(int? id, String name, String phone, double price) async {
     Client editClient = Client(id: id, name: name, phone: phone, price: price);
     emit(const ClientsLoading());
     await Future.delayed(const Duration(seconds: 2));

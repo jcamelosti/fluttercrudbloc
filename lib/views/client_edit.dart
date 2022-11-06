@@ -150,14 +150,14 @@ class ClientsEditView extends StatelessWidget {
                       onChanged: (text) {
                         // a validacao eh realizada em toda alteracao do campo
                         context.read<ClientValidationCubit>().validaForm(
-                            _nameController.text, _phoneController.text, 0.0);
+                            _nameController.text, _phoneController.text, double.parse(_priceController.text));
                       },
                       onFieldSubmitted: (String value) {
                         if (_formKey.currentState!.validate()) {
                           //fechar teclado
                           FocusScope.of(context).unfocus();
                           context.read<ClientsCubit>().salvarCliente(client?.id,
-                              _nameController.text, _phoneController.text, 0.0);
+                              _nameController.text, _phoneController.text, double.parse(_priceController.text));
                         }
                       },
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -179,16 +179,8 @@ class ClientsEditView extends StatelessWidget {
                 BlocBuilder<ClientValidationCubit, ClientValidationState>(
                   builder: (context, state) {
                     return TextFormField(
-                      /*keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        // for below version 2 use this
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                        // for version 2 and greater youcan also use this
-                        FilteringTextInputFormatter.digitsOnly
-                      ],*/
-                      keyboardType: TextInputType.numberWithOptions(decimal: true),
-                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9.,]+')),],
-                      //onChanged: (value) => doubleVar = double.parse(value),
+                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[0-9,]+')),],
                       decoration: const InputDecoration(
                         labelText: 'Valor(Hora)',
                       ),
@@ -198,7 +190,7 @@ class ClientsEditView extends StatelessWidget {
                       onChanged: (text) {
                         // a validacao eh realizada em toda alteracao do campo
                         context.read<ClientValidationCubit>().validaForm(
-                            _nameController.text, _phoneController.text, double.parse(_priceController.text));
+                            _nameController.text, _phoneController.text, tratarMoeda(text));
                       },
                       onFieldSubmitted: (String value) {
                         if (_formKey.currentState!.validate()) {
@@ -243,7 +235,8 @@ class ClientsEditView extends StatelessWidget {
                                         client?.id,
                                         _nameController.text,
                                         _phoneController.text,
-                                        0.0);
+                                        tratarMoeda(_priceController.text)
+                                    );
                                   }
                                 }
                               : null,
@@ -259,5 +252,17 @@ class ClientsEditView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double tratarMoeda(String strValor){
+    double valor = 0.0;
+
+    if(strValor.isEmpty){
+      valor = 0.0;
+    }else{
+      valor = double.parse( strValor.replaceAll(',', '.') );
+    }
+
+    return valor;
   }
 }

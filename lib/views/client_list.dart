@@ -124,7 +124,7 @@ class _ClientsList extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              title: Text(client.name),
+              title: Text(client.name + ' ' +client.price.toString()),
               subtitle: Text(
                 client.phone,
               ),

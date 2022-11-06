@@ -55,7 +55,7 @@ class ClientsCubit extends Cubit<ClientsState> {
     }
   }
 
-  //salvar nota
+  //salvar Cliente
   Future<void> salvarCliente(int? id, String name, String phone, double price) async {
     Client editClient = Client(id: id, name: name, phone: phone, price: price);
     emit(const ClientsLoading());
